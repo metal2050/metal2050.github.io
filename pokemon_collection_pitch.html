@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pok&eacute;mon TCG Collection — Summary</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f172a; color: #e2e8f0; line-height: 1.5;
+}
+html { scroll-padding-top: 52px; scroll-behavior: smooth; }
+.container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 4px; font-weight: 700; }
+.subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 32px; }
+h2 {
+    font-size: 1.15rem; color: #f8fafc; margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid #334155;
+}
+.highlight { color: #94a3b8; font-size: 0.9rem; margin-top: 8px; line-height: 1.6; }
+
+/* Stat cards */
+.stats { display: flex; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }
+.stat {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 20px 24px; flex: 1; min-width: 170px;
+}
+.stat-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-value { font-size: 1.8rem; font-weight: 700; color: #f8fafc; }
+.stat-value.money { color: #4ade80; }
+.stat-sub { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
+
+/* Sections */
+.section {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 28px; margin-bottom: 24px;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th {
+    text-align: left; padding: 8px 10px; background: #334155; color: #e2e8f0;
+    font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3px;
+}
+td { padding: 7px 10px; border-bottom: 1px solid #1e293b; }
+tr:hover { background: #334155; }
+.price-cell { text-align: right; font-variant-numeric: tabular-nums; }
+.img-cell { width: 50px; }
+.img-cell img { vertical-align: middle; }
+
+/* Chart area */
+.chart-area { margin: 16px 0; }
+
+/* Two-column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+.col-table { font-size: 0.8rem; }
+.col-table th { background: transparent; border-bottom: 2px solid #334155; padding: 6px 8px; }
+.col-table td { padding: 5px 8px; border-bottom: 1px solid #1e293b; }
+
+/* Donut legend */
+.donut-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+/* Nav bar */
+.nav-bar {
+    position: sticky; top: 0; z-index: 100; background: #1e293b;
+    display: flex; align-items: center; gap: 4px; padding: 8px 16px;
+    border-bottom: 1px solid #334155;
+}
+.nav-bar a {
+    color: #94a3b8; text-decoration: none; font-size: 0.8rem; padding: 4px 10px;
+    border-radius: 4px; transition: background 0.15s;
+}
+.nav-bar a:hover { background: rgba(255,255,255,0.1); }
+.nav-bar a.active { background: #2563eb; color: white; }
+.report-link {
+    margin-left: auto; padding: 4px 12px; border: 1px solid #3b82f6; border-radius: 4px;
+    color: #3b82f6 !important; font-size: 0.75rem; font-weight: 600; text-decoration: none;
+    background: transparent;
+}
+.report-link:hover { background: #3b82f6; color: #f8fafc !important; }
+
+/* Footer */
+.footer {
+    text-align: center; font-size: 0.75rem; color: #475569;
+    margin-top: 24px; padding-top: 16px; border-top: 1px solid #1e293b;
+}
+
+/* Print */
+@media print {
+    body { background: white; color: #1a1a2e; }
+    .nav-bar { display: none; }
+    .container { padding: 20px; }
+    .stat { background: #f8fafc; border-color: #e2e8f0; }
+    .stat-value { color: #1a1a2e; }
+    .stat-value.money { color: #16a34a; }
+    .section { background: #f8fafc; border-color: #e2e8f0; }
+    h1, h2 { color: #1a1a2e; }
+    th { background: #f1f5f9; color: #1a1a2e; }
+    tr:hover { background: transparent; }
+    .footer { color: #94a3b8; }
+}
+</style>
+</head>
+<body>
+<nav class="nav-bar">
+    <a href="#summary">Summary</a>
+    <a href="#distribution">Distribution</a>
+    <a href="#top25">Top 25</a>
+    <a href="#grading">Grading</a>
+    <a href="#composition">Composition</a>
+    <a href="#liquidity">Liquidity</a>
+    <a href="index.html" class="report-link" title="View Full Pricing Report">Full Report</a>
+</nav>
+<div class="container">
+    <h1>Pok&eacute;mon TCG Collection</h1>
+    <p class="subtitle">Market data as of March 25, 2026 at 12:52 AM &middot; Prices in CAD (1 USD = 1.38 CAD)</p>
+
+    <div class="stats" id="summary">
+        <div class="stat">
+            <div class="stat-label">Total Cards</div>
+            <div class="stat-value">4,068</div>
+            <div class="stat-sub">4,068 with market pricing</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Market Value</div>
+            <div class="stat-value money">C$39,755</div>
+            <div class="stat-sub">TCGPlayer market prices</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Sets</div>
+            <div class="stat-value">90</div>
+            <div class="stat-sub">12 eras (1999&ndash;2022)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Grading Upside</div>
+            <div class="stat-value money">C$7,800</div>
+            <div class="stat-sub">45 high-confidence candidates</div>
+        </div>
+    </div>
+    <p class="highlight">Anchored by Lugia ex at C$1,279, with 46 cards valued over C$138.</p>
+
+    <!-- Value Distribution -->
+    <div class="section" id="distribution">
+        <h2>Value Distribution</h2>
+        <div class="chart-area"><svg viewBox="0 0 600 346" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px">
+        <text x="0" y="18" fill="#94a3b8" font-size="12" font-family="system-ui">Under C$1</text>
+        <rect x="120" y="0" width="380.0" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="506.0" y="16" fill="#93c5fd" font-size="11" font-family="system-ui">2,196 cards</text>
+        <rect x="120" y="22" width="24.1" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="150.0595228116907" y="38" fill="#86efac" font-size="11" font-family="system-ui">C$943.40 (2%)</text>
+        <text x="0" y="74" fill="#94a3b8" font-size="12" font-family="system-ui">C$1 – C$5</text>
+        <rect x="120" y="56" width="172.2" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="298.1766848816029" y="72" fill="#93c5fd" font-size="11" font-family="system-ui">995 cards</text>
+        <rect x="120" y="78" width="57.1" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="183.07638041511666" y="94" fill="#86efac" font-size="11" font-family="system-ui">C$2,238 (6%)</text>
+        <text x="0" y="130" fill="#94a3b8" font-size="12" font-family="system-ui">C$5 – C$25</text>
+        <rect x="120" y="112" width="88.1" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="214.0783242258652" y="128" fill="#93c5fd" font-size="11" font-family="system-ui">509 cards</text>
+        <rect x="120" y="134" width="146.2" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="272.19357509651786" y="150" fill="#86efac" font-size="11" font-family="system-ui">C$5,732 (14%)</text>
+        <text x="0" y="186" fill="#94a3b8" font-size="12" font-family="system-ui">C$25 – C$100</text>
+        <rect x="120" y="168" width="48.6" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="174.6247723132969" y="184" fill="#93c5fd" font-size="11" font-family="system-ui">281 cards</text>
+        <rect x="120" y="190" width="342.2" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="468.2039333327469" y="206" fill="#86efac" font-size="11" font-family="system-ui">C$13,418 (34%)</text>
+        <text x="0" y="242" fill="#94a3b8" font-size="12" font-family="system-ui">C$100 – C$500</text>
+        <rect x="120" y="224" width="14.5" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="140.53551912568307" y="240" fill="#93c5fd" font-size="11" font-family="system-ui">84 cards</text>
+        <rect x="120" y="246" width="380.0" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="506.0" y="262" fill="#86efac" font-size="11" font-family="system-ui">C$14,900 (37%)</text>
+        <text x="0" y="298" fill="#94a3b8" font-size="12" font-family="system-ui">C$500+</text>
+        <rect x="120" y="280" width="2.0" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="128" y="296" fill="#93c5fd" font-size="11" font-family="system-ui">3 cards</text>
+        <rect x="120" y="302" width="64.3" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="190.34819011031098" y="318" fill="#86efac" font-size="11" font-family="system-ui">C$2,523 (6%)</text></svg></div>
+        <table>
+            <thead><tr><th>Tier</th><th>Cards</th><th>% Cards</th><th>Value</th><th>% Value</th></tr></thead>
+            <tbody><tr><td>Under C$1</td><td>2,196</td><td>54.0%</td><td>C$943.40</td><td>2.4%</td></tr><tr><td>C$1 – C$5</td><td>995</td><td>24.5%</td><td>C$2,238</td><td>5.6%</td></tr><tr><td>C$5 – C$25</td><td>509</td><td>12.5%</td><td>C$5,732</td><td>14.4%</td></tr><tr><td>C$25 – C$100</td><td>281</td><td>6.9%</td><td>C$13,418</td><td>33.8%</td></tr><tr><td>C$100 – C$500</td><td>84</td><td>2.1%</td><td>C$14,900</td><td>37.5%</td></tr><tr><td>C$500+</td><td>3</td><td>0.1%</td><td>C$2,523</td><td>6.3%</td></tr></tbody>
+        </table>
+    </div>
+
+    <!-- Value by Era -->
+    <div class="section">
+        <h2>Value by Era</h2>
+        <div class="chart-area"><svg viewBox="0 0 600 442" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px">
+        <text x="0" y="20" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">Base</text>
+        <rect x="80" y="0" width="88.5" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="176.46129831787073" y="20" fill="#c4b5fd" font-size="12" font-family="system-ui">C$3,650  (286 cards)</text>
+        <text x="0" y="56" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">Gym</text>
+        <rect x="80" y="36" width="15.3" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="103.29185560470019" y="56" fill="#c4b5fd" font-size="12" font-family="system-ui">C$630.90  (85 cards)</text>
+        <text x="0" y="92" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">Neo</text>
+        <rect x="80" y="72" width="24.4" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="112.42913862095955" y="92" fill="#c4b5fd" font-size="12" font-family="system-ui">C$1,008  (186 cards)</text>
+        <text x="0" y="128" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">e-Card</text>
+        <rect x="80" y="108" width="45.1" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="133.10156662009877" y="128" fill="#c4b5fd" font-size="12" font-family="system-ui">C$1,861  (129 cards)</text>
+        <text x="0" y="164" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">EX</text>
+        <rect x="80" y="144" width="420.0" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="508.0" y="164" fill="#c4b5fd" font-size="12" font-family="system-ui">C$17,328  (861 cards)</text>
+        <text x="0" y="200" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">DP</text>
+        <rect x="80" y="180" width="31.0" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="119.01319100589919" y="200" fill="#c4b5fd" font-size="12" font-family="system-ui">C$1,280  (253 cards)</text>
+        <text x="0" y="236" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">Platinum</text>
+        <rect x="80" y="216" width="56.2" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="144.20415453690998" y="236" fill="#c4b5fd" font-size="12" font-family="system-ui">C$2,319  (308 cards)</text>
+        <text x="0" y="272" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">HGSS</text>
+        <rect x="80" y="252" width="10.6" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="98.57610723169498" y="272" fill="#c4b5fd" font-size="12" font-family="system-ui">C$436.34  (109 cards)</text>
+        <text x="0" y="308" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">BW</text>
+        <rect x="80" y="288" width="2.0" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="90" y="308" fill="#c4b5fd" font-size="12" font-family="system-ui">C$81.49  (57 cards)</text>
+        <text x="0" y="344" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">XY</text>
+        <rect x="80" y="324" width="39.4" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="127.40577478623567" y="344" fill="#c4b5fd" font-size="12" font-family="system-ui">C$1,626  (313 cards)</text>
+        <text x="0" y="380" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">SM</text>
+        <rect x="80" y="360" width="225.3" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="313.31098819376507" y="380" fill="#c4b5fd" font-size="12" font-family="system-ui">C$9,296  (1149 cards)</text>
+        <text x="0" y="416" fill="#94a3b8" font-size="13" font-weight="600" font-family="system-ui">SWSH</text>
+        <rect x="80" y="396" width="5.8" height="28" rx="4" fill="#8b5cf6" opacity="0.8"/>
+        <text x="93.82172574615424" y="416" fill="#c4b5fd" font-size="12" font-family="system-ui">C$240.19  (332 cards)</text></svg></div>
+    </div>
+
+    <!-- Top 25 -->
+    <div class="section" id="top25">
+        <h2>Top 25 Most Valuable Cards</h2>
+        <table>
+            <thead><tr><th>#</th><th></th><th>Name</th><th>Set</th><th>Number</th><th>Market</th><th>PSA 9</th><th>PSA 10</th></tr></thead>
+            <tbody><tr>
+            <td style="color:#64748b">1</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/86912_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Lugia ex</strong></td>
+            <td>EX Unseen Forces</td>
+            <td>#105</td>
+            <td class="price-cell">C$1,279</td>
+            <td class="price-cell">C$3,933</td>
+            <td class="price-cell">C$18,110</td>
+        </tr><tr>
+            <td style="color:#64748b">2</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/201338_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Arceus & Dialga & Palkia GX</strong></td>
+            <td>Cosmic Eclipse</td>
+            <td>#221</td>
+            <td class="price-cell">C$646.56</td>
+            <td class="price-cell">C$635.32</td>
+            <td class="price-cell">C$2,691</td>
+        </tr><tr>
+            <td style="color:#64748b">3</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/84195_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Charizard</strong></td>
+            <td>EX Crystal Guardians</td>
+            <td>#4</td>
+            <td class="price-cell">C$597.80</td>
+            <td class="price-cell">C$2,066</td>
+            <td class="price-cell">C$9,797</td>
+        </tr><tr>
+            <td style="color:#64748b">4</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/86002_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Gyarados</strong></td>
+            <td>EX Holon Phantoms</td>
+            <td>#8</td>
+            <td class="price-cell">C$482.99</td>
+            <td class="price-cell">C$412.62</td>
+            <td class="price-cell">C$2,632</td>
+        </tr><tr>
+            <td style="color:#64748b">5</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/195290_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Mega Sableye & Tyranitar GX</strong></td>
+            <td>Unified Minds</td>
+            <td>#226</td>
+            <td class="price-cell">C$448.91</td>
+            <td class="price-cell">C$486.38</td>
+            <td class="price-cell">C$1,397</td>
+        </tr><tr>
+            <td style="color:#64748b">6</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/201250_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Solgaleo & Lunala GX</strong></td>
+            <td>Cosmic Eclipse</td>
+            <td>#216</td>
+            <td class="price-cell">C$433.95</td>
+            <td class="price-cell">C$450.27</td>
+            <td class="price-cell">C$1,590</td>
+        </tr><tr>
+            <td style="color:#64748b">7</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/90151_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Umbreon</strong></td>
+            <td>EX Delta Species</td>
+            <td>#17</td>
+            <td class="price-cell">C$408.38</td>
+            <td class="price-cell">C$627.90</td>
+            <td class="price-cell">C$5,617</td>
+        </tr><tr>
+            <td style="color:#64748b">8</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/87425_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Mewtwo</strong></td>
+            <td>EX Delta Species</td>
+            <td>#12</td>
+            <td class="price-cell">C$360.86</td>
+            <td class="price-cell">C$774.08</td>
+            <td class="price-cell">C$5,382</td>
+        </tr><tr>
+            <td style="color:#64748b">9</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/84837_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Ditto</strong></td>
+            <td>EX Delta Species</td>
+            <td>#40</td>
+            <td class="price-cell">C$338.10</td>
+            <td class="price-cell">--</td>
+            <td class="price-cell">--</td>
+        </tr><tr>
+            <td style="color:#64748b">10</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/86906_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Lugia</strong></td>
+            <td>EX Unseen Forces</td>
+            <td>#29</td>
+            <td class="price-cell">C$311.15</td>
+            <td class="price-cell">C$82.80</td>
+            <td class="price-cell">C$310.47</td>
+        </tr><tr>
+            <td style="color:#64748b">11</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/86669_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Latios</strong></td>
+            <td>EX Delta Species</td>
+            <td>#9</td>
+            <td class="price-cell">C$310.50</td>
+            <td class="price-cell">C$219.68</td>
+            <td class="price-cell">C$2,518</td>
+        </tr><tr>
+            <td style="color:#64748b">12</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/201286_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Mega Lopunny & Jigglypuff GX</strong></td>
+            <td>Cosmic Eclipse</td>
+            <td>#226</td>
+            <td class="price-cell">C$307.15</td>
+            <td class="price-cell">C$303.60</td>
+            <td class="price-cell">C$932.02</td>
+        </tr><tr>
+            <td style="color:#64748b">13</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/90293_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Vaporeon ex</strong></td>
+            <td>EX Delta Species</td>
+            <td>#110</td>
+            <td class="price-cell">C$301.31</td>
+            <td class="price-cell">C$617.44</td>
+            <td class="price-cell">C$6,848</td>
+        </tr><tr>
+            <td style="color:#64748b">14</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/205169_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Armored Mewtwo</strong></td>
+            <td>Sun & Moon Promo</td>
+            <td>#SM228</td>
+            <td class="price-cell">C$289.72</td>
+            <td class="price-cell">C$783.15</td>
+            <td class="price-cell">C$5,986</td>
+        </tr><tr>
+            <td style="color:#64748b">15</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/88905_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Salamence ex</strong></td>
+            <td>EX Dragon Frontiers</td>
+            <td>#98</td>
+            <td class="price-cell">C$282.90</td>
+            <td class="price-cell">C$760.10</td>
+            <td class="price-cell">C$1,428</td>
+        </tr><tr>
+            <td style="color:#64748b">16</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/84208_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Charmander</strong></td>
+            <td>EX Dragon</td>
+            <td>#98</td>
+            <td class="price-cell">C$276.83</td>
+            <td class="price-cell">C$401.35</td>
+            <td class="price-cell">C$1,055</td>
+        </tr><tr>
+            <td style="color:#64748b">17</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/84216_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Charmander</strong></td>
+            <td>Stormfront</td>
+            <td>#101</td>
+            <td class="price-cell">C$248.50</td>
+            <td class="price-cell">C$369.94</td>
+            <td class="price-cell">C$2,392</td>
+        </tr><tr>
+            <td style="color:#64748b">18</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/85641_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Gardevoir ex</strong></td>
+            <td>EX Sandstorm</td>
+            <td>#96</td>
+            <td class="price-cell">C$241.43</td>
+            <td class="price-cell">C$466.73</td>
+            <td class="price-cell">C$2,416</td>
+        </tr><tr>
+            <td style="color:#64748b">19</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/85327_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Espeon</strong></td>
+            <td>EX Delta Species</td>
+            <td>#4</td>
+            <td class="price-cell">C$232.38</td>
+            <td class="price-cell">C$345.00</td>
+            <td class="price-cell">C$2,035</td>
+        </tr><tr>
+            <td style="color:#64748b">20</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/86675_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Latios ex</strong></td>
+            <td>EX Dragon Frontiers</td>
+            <td>#96</td>
+            <td class="price-cell">C$232.32</td>
+            <td class="price-cell">C$634.80</td>
+            <td class="price-cell">C$7,314</td>
+        </tr><tr>
+            <td style="color:#64748b">21</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/211452_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Umbreon & Darkrai GX</strong></td>
+            <td>Sun & Moon Promo</td>
+            <td>#SM241</td>
+            <td class="price-cell">C$227.66</td>
+            <td class="price-cell">--</td>
+            <td class="price-cell">--</td>
+        </tr><tr>
+            <td style="color:#64748b">22</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/85642_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Gardevoir ex</strong></td>
+            <td>EX Dragon Frontiers</td>
+            <td>#93</td>
+            <td class="price-cell">C$227.35</td>
+            <td class="price-cell">C$475.92</td>
+            <td class="price-cell">C$1,335</td>
+        </tr><tr>
+            <td style="color:#64748b">23</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/197830_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Sylveon GX</strong></td>
+            <td>Hidden Fates</td>
+            <td>#SV76</td>
+            <td class="price-cell">C$220.73</td>
+            <td class="price-cell">C$213.65</td>
+            <td class="price-cell">C$455.47</td>
+        </tr><tr>
+            <td style="color:#64748b">24</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/86655_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Latias</strong></td>
+            <td>EX Delta Species</td>
+            <td>#8</td>
+            <td class="price-cell">C$219.88</td>
+            <td class="price-cell">C$330.00</td>
+            <td class="price-cell">C$1,697</td>
+        </tr><tr>
+            <td style="color:#64748b">25</td>
+            <td class="img-cell"><img src="https://tcgplayer-cdn.tcgplayer.com/product/88501_200w.jpg" loading="lazy" width="44" style="border-radius:4px"></td>
+            <td><strong>Raichu</strong></td>
+            <td>Expedition</td>
+            <td>#25</td>
+            <td class="price-cell">C$206.99</td>
+            <td class="price-cell">C$420.90</td>
+            <td class="price-cell">C$3,575</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <!-- Grading Upside -->
+    <div class="section" id="grading">
+        <h2>Grading Upside</h2>
+        <p style="color:#94a3b8; font-size:0.82rem; margin-bottom:12px">
+            214 grading candidates identified &middot;
+            45 high-confidence ("GRADE") cards &middot;
+            Total estimated upside: <strong style="color:#4ade80">C$7,800</strong> assuming PSA 8
+            &middot; Grading fee: ~C$35 (PSA Collector&rsquo;s Club bulk rate)
+        </p>
+        <table>
+            <thead><tr><th>Name</th><th>Set</th><th>Raw</th><th>PSA 8</th><th>PSA 9</th><th>PSA 10</th><th>Est. Profit</th></tr></thead>
+            <tbody><tr>
+            <td><strong>Lugia ex</strong></td>
+            <td>EX Unseen Forces</td>
+            <td class="price-cell">C$1,279</td>
+            <td class="price-cell">C$2,188</td>
+            <td class="price-cell">C$3,933</td>
+            <td class="price-cell">C$18,110</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$1,671</td>
+        </tr><tr>
+            <td><strong>Charizard</strong></td>
+            <td>EX Crystal Guardians</td>
+            <td class="price-cell">C$597.80</td>
+            <td class="price-cell">C$903.42</td>
+            <td class="price-cell">C$2,066</td>
+            <td class="price-cell">C$9,797</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$605.34</td>
+        </tr><tr>
+            <td><strong>Jolteon</strong></td>
+            <td>Cosmic Eclipse</td>
+            <td class="price-cell">C$0.73</td>
+            <td class="price-cell">--</td>
+            <td class="price-cell">C$46.23</td>
+            <td class="price-cell">C$47.72</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$308.46</td>
+        </tr><tr>
+            <td><strong>Salamence ex</strong></td>
+            <td>EX Dragon Frontiers</td>
+            <td class="price-cell">C$282.90</td>
+            <td class="price-cell">C$414.00</td>
+            <td class="price-cell">C$760.10</td>
+            <td class="price-cell">C$1,428</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$241.31</td>
+        </tr><tr>
+            <td><strong>Latios ex</strong></td>
+            <td>EX Dragon Frontiers</td>
+            <td class="price-cell">C$232.32</td>
+            <td class="price-cell">C$407.46</td>
+            <td class="price-cell">C$634.80</td>
+            <td class="price-cell">C$7,314</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$239.49</td>
+        </tr><tr>
+            <td><strong>Venusaur</strong></td>
+            <td>Base Set</td>
+            <td class="price-cell">C$194.23</td>
+            <td class="price-cell">C$327.27</td>
+            <td class="price-cell">C$704.10</td>
+            <td class="price-cell">C$4,208</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$182.37</td>
+        </tr><tr>
+            <td><strong>Dragonite</strong></td>
+            <td>Legends Awakened</td>
+            <td class="price-cell">C$177.34</td>
+            <td class="price-cell">C$318.92</td>
+            <td class="price-cell">C$414.00</td>
+            <td class="price-cell">C$3,588</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$180.92</td>
+        </tr><tr>
+            <td><strong>Dragonite</strong></td>
+            <td>EX Delta Species</td>
+            <td class="price-cell">C$191.81</td>
+            <td class="price-cell">C$344.99</td>
+            <td class="price-cell">C$551.99</td>
+            <td class="price-cell">C$3,088</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$174.21</td>
+        </tr><tr>
+            <td><strong>Gyarados</strong></td>
+            <td>EX Holon Phantoms</td>
+            <td class="price-cell">C$482.99</td>
+            <td class="price-cell">C$332.30</td>
+            <td class="price-cell">C$412.62</td>
+            <td class="price-cell">C$2,632</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$172.06</td>
+        </tr><tr>
+            <td><strong>Raikou ex</strong></td>
+            <td>EX Team Magma vs Team Aqua</td>
+            <td class="price-cell">C$82.23</td>
+            <td class="price-cell">C$410.04</td>
+            <td class="price-cell">C$979.80</td>
+            <td class="price-cell">C$2,404</td>
+            <td class="price-cell" style="color:#4ade80;font-weight:600">+C$163.88</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <!-- Collection Composition -->
+    <div class="section" id="composition">
+        <h2>Collection Composition</h2>
+        <div class="two-col">
+            <div>
+                <h3 style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px">By Rarity</h3>
+                <table class="col-table">
+                    <thead><tr><th>Rarity</th><th>Count</th><th>%</th></tr></thead>
+                    <tbody><tr><td>Common</td><td>1,755</td><td>43.1%</td></tr><tr><td>Uncommon</td><td>1,229</td><td>30.2%</td></tr><tr><td>Rare</td><td>434</td><td>10.7%</td></tr><tr><td>Holo Rare</td><td>293</td><td>7.2%</td></tr><tr><td>Ultra Rare</td><td>176</td><td>4.3%</td></tr><tr><td>Promo</td><td>85</td><td>2.1%</td></tr><tr><td>Shiny Holo Rare</td><td>41</td><td>1.0%</td></tr><tr><td>Secret Rare</td><td>34</td><td>0.8%</td></tr><tr><td>Prism Rare</td><td>12</td><td>0.3%</td></tr><tr><td>Rare BREAK</td><td>5</td><td>0.1%</td></tr></tbody>
+                </table>
+            </div>
+            <div>
+                <h3 style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px">By Era</h3>
+                <table class="col-table">
+                    <thead><tr><th>Era</th><th>Cards</th><th>Value</th></tr></thead>
+                    <tbody><tr><td>Base</td><td>286</td><td>C$3,650</td></tr><tr><td>Gym</td><td>85</td><td>C$630.90</td></tr><tr><td>Neo</td><td>186</td><td>C$1,008</td></tr><tr><td>e-Card</td><td>129</td><td>C$1,861</td></tr><tr><td>EX</td><td>861</td><td>C$17,328</td></tr><tr><td>DP</td><td>253</td><td>C$1,280</td></tr><tr><td>Platinum</td><td>308</td><td>C$2,319</td></tr><tr><td>HGSS</td><td>109</td><td>C$436.34</td></tr><tr><td>BW</td><td>57</td><td>C$81.49</td></tr><tr><td>XY</td><td>313</td><td>C$1,626</td></tr><tr><td>SM</td><td>1,149</td><td>C$9,296</td></tr><tr><td>SWSH</td><td>332</td><td>C$240.19</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <h3 style="font-size:0.85rem; color:#94a3b8; margin: 20px 0 8px">Top Sets by Value</h3>
+        <table class="col-table" style="max-width:500px">
+            <thead><tr><th>Set</th><th>Cards</th><th>Value</th></tr></thead>
+            <tbody><tr><td>EX Delta Species</td><td>73</td><td>C$3,364</td></tr><tr><td>EX Unseen Forces</td><td>95</td><td>C$2,966</td></tr><tr><td>Cosmic Eclipse</td><td>206</td><td>C$2,912</td></tr><tr><td>EX Crystal Guardians</td><td>92</td><td>C$1,897</td></tr><tr><td>Sun & Moon Promo</td><td>30</td><td>C$1,690</td></tr><tr><td>EX Dragon Frontiers</td><td>73</td><td>C$1,637</td></tr><tr><td>EX Holon Phantoms</td><td>77</td><td>C$1,432</td></tr><tr><td>Platinum</td><td>202</td><td>C$1,425</td></tr><tr><td>Wizards Black Star Promo</td><td>28</td><td>C$1,258</td></tr><tr><td>Hidden Fates</td><td>135</td><td>C$1,161</td></tr></tbody>
+        </table>
+    </div>
+
+    <!-- Liquidity Analysis -->
+    <div class="section" id="liquidity">
+        <h2>Liquidity Analysis</h2>
+        <p style="color:#94a3b8; font-size:0.82rem; margin-bottom:16px">
+            Cards above common price thresholds — individually sellable with reasonable margin.
+        </p>
+        <div class="donut-wrap">
+            <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px">
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#f43f5e" stroke-width="28" stroke-dasharray="139.5 300.3" stroke-dashoffset="-0.0" transform="rotate(-90 90 90)"/>
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#8b5cf6" stroke-width="28" stroke-dasharray="173.1 266.7" stroke-dashoffset="-139.5" transform="rotate(-90 90 90)"/>
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#3b82f6" stroke-width="28" stroke-dasharray="84.2 355.6" stroke-dashoffset="-312.6" transform="rotate(-90 90 90)"/>
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#334155" stroke-width="28" stroke-dasharray="43.1 396.8" stroke-dashoffset="-396.8" transform="rotate(-90 90 90)"/>
+        <text x="200" y="40" fill="#f43f5e" font-size="12" font-family="system-ui">&#9632; C$138+ (32%)</text>
+        <text x="200" y="65" fill="#8b5cf6" font-size="12" font-family="system-ui">&#9632; C$35–138 (39%)</text>
+        <text x="200" y="90" fill="#3b82f6" font-size="12" font-family="system-ui">&#9632; C$7–35 (19%)</text>
+        <text x="200" y="115" fill="#64748b" font-size="12" font-family="system-ui">&#9632; Under C$7 (10%)</text>
+    </svg>
+        </div>
+        <table style="margin-top:16px; max-width:550px">
+            <thead><tr><th>Threshold</th><th>Cards</th><th>Value</th><th>% of Total</th></tr></thead>
+            <tbody><tr><td>C$7+</td><td>757</td><td>C$35,862</td><td>90.2%</td></tr><tr><td>C$14+</td><td>511</td><td>C$33,461</td><td>84.2%</td></tr><tr><td>C$34+</td><td>280</td><td>C$28,252</td><td>71.1%</td></tr><tr><td>C$69+</td><td>133</td><td>C$21,195</td><td>53.3%</td></tr><tr><td>C$138+</td><td>46</td><td>C$12,607</td><td>31.7%</td></tr></tbody>
+        </table>
+    </div>
+
+    <p class="footer">
+        Pricing data sourced from TCGPlayer (via tcgcsv.com) and PriceCharting.
+        Market prices reflect recent median sale prices. PSA graded prices reflect recent auction &amp; sale data.
+        All values converted to CAD at 1.38 USD/CAD.
+    </p>
+</div>
+</body>
+</html>
