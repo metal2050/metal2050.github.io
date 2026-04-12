@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pok&eacute;mon TCG Collection — Summary</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f172a; color: #e2e8f0; line-height: 1.5;
+}
+html { scroll-padding-top: 52px; scroll-behavior: smooth; }
+.container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 4px; font-weight: 700; }
+.subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 32px; }
+h2 {
+    font-size: 1.15rem; color: #f8fafc; margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid #334155;
+}
+.highlight { color: #94a3b8; font-size: 0.9rem; margin-top: 8px; line-height: 1.6; }
+
+/* Stat cards */
+.stats { display: flex; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }
+.stat {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 20px 24px; flex: 1; min-width: 170px;
+}
+.stat-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-value { font-size: 1.8rem; font-weight: 700; color: #f8fafc; }
+.stat-value.money { color: #4ade80; }
+.stat-sub { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
+
+/* Sections */
+.section {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 28px; margin-bottom: 24px;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th {
+    text-align: left; padding: 8px 10px; background: #334155; color: #e2e8f0;
+    font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3px;
+}
+td { padding: 7px 10px; border-bottom: 1px solid #1e293b; }
+tr:hover { background: #334155; }
+.price-cell { text-align: right; font-variant-numeric: tabular-nums; }
+.img-cell { width: 50px; }
+.img-cell img { vertical-align: middle; }
+
+/* Chart area */
+.chart-area { margin: 16px 0; }
+
+/* Two-column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+.col-table { font-size: 0.8rem; }
+.col-table th { background: transparent; border-bottom: 2px solid #334155; padding: 6px 8px; }
+.col-table td { padding: 5px 8px; border-bottom: 1px solid #1e293b; }
+
+/* Donut legend */
+.donut-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+/* Nav bar */
+.nav-bar {
+    position: sticky; top: 0; z-index: 100; background: #1e293b;
+    display: flex; align-items: center; gap: 4px; padding: 8px 16px;
+    border-bottom: 1px solid #334155;
+}
+.nav-bar a {
+    color: #94a3b8; text-decoration: none; font-size: 0.8rem; padding: 4px 10px;
+    border-radius: 4px; transition: background 0.15s;
+}
+.nav-bar a:hover { background: rgba(255,255,255,0.1); }
+.nav-bar a.active { background: #2563eb; color: white; }
+.report-link {
+    margin-left: auto; padding: 4px 12px; border: 1px solid #3b82f6; border-radius: 4px;
+    color: #3b82f6 !important; font-size: 0.75rem; font-weight: 600; text-decoration: none;
+    background: transparent;
+}
+.report-link:hover { background: #3b82f6; color: #f8fafc !important; }
+
+/* Footer */
+.footer {
+    text-align: center; font-size: 0.75rem; color: #475569;
+    margin-top: 24px; padding-top: 16px; border-top: 1px solid #1e293b;
+}
+
+/* Print */
+@media print {
+    body { background: white; color: #1a1a2e; }
+    .nav-bar { display: none; }
+    .container { padding: 20px; }
+    .stat { background: #f8fafc; border-color: #e2e8f0; }
+    .stat-value { color: #1a1a2e; }
+    .stat-value.money { color: #16a34a; }
+    .section { background: #f8fafc; border-color: #e2e8f0; }
+    h1, h2 { color: #1a1a2e; }
+    th { background: #f1f5f9; color: #1a1a2e; }
+    tr:hover { background: transparent; }
+    .footer { color: #94a3b8; }
+}
+</style>
+</head>
+<body>
+<nav class="nav-bar">
+    <a href="#summary">Summary</a>
+    <a href="#buyergets">Overview</a>
+    <a href="#distribution">Distribution</a>
+    <a href="#composition">Composition</a>
+    <a href="#consignment">Consignment</a>
+    <a href="index.html" class="report-link" title="View Full Pricing Report">Full Report</a>
+</nav>
+<div class="container">
+    <h1>Pok&eacute;mon TCG Collection</h1>
+    <p class="subtitle">Market data as of April 09, 2026 at 01:46 PM &middot; Prices in CAD (1 USD = 1.38 CAD)</p>
+
+    <div class="stats" id="summary">
+        <div class="stat">
+            <div class="stat-label">Total Cards</div>
+            <div class="stat-value">4,070</div>
+            <div class="stat-sub">4,070 with market pricing</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Market Value</div>
+            <div class="stat-value money">C$41,686</div>
+            <div class="stat-sub">TCGPlayer market prices</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Sets &middot; Eras</div>
+            <div class="stat-value">92</div>
+            <div class="stat-sub">12 eras &middot; Base–SWSH (1999&ndash;2022)</div>
+        </div>
+    </div>
+    <p class="highlight"></p>
+
+    <!-- What a Buyer Gets -->
+    <div class="section" id="buyergets">
+        <h2>What&rsquo;s in the Collection</h2>
+        <div class="stats" style="margin-bottom:0">
+            <div class="stat">
+                <div class="stat-value" style="font-size:1.4rem; color:#4ade80">297 cards</div>
+                <div class="stat-sub">Individually priced singles (C$35+)</div>
+                <div class="stat-value money" style="font-size:1.1rem; margin-top:4px">C$30,135</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" style="font-size:1.4rem; color:#8b5cf6">480 cards</div>
+                <div class="stat-sub">Mid-range singles (C$7&ndash;C$35)</div>
+                <div class="stat-value" style="font-size:1.1rem; color:#8b5cf6; margin-top:4px">C$7,652</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" style="font-size:1.4rem; color:#64748b">3,293 cards</div>
+                <div class="stat-sub">Bulk &amp; commons (under C$7)</div>
+                <div class="stat-value" style="font-size:1.1rem; color:#64748b; margin-top:4px">C$3,899</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Value Distribution -->
+    <div class="section" id="distribution">
+        <h2>Value Distribution</h2>
+        <div class="chart-area"><svg viewBox="0 0 600 346" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px">
+        <text x="0" y="18" fill="#94a3b8" font-size="12" font-family="system-ui">Under C$5</text>
+        <rect x="120" y="0" width="380.0" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="506.0" y="16" fill="#93c5fd" font-size="11" font-family="system-ui">3,170 cards</text>
+        <rect x="120" y="22" width="112.4" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="238.44591413648718" y="38" fill="#86efac" font-size="11" font-family="system-ui">C$3,167 (8%)</text>
+        <text x="0" y="74" fill="#94a3b8" font-size="12" font-family="system-ui">C$5 – C$25</text>
+        <rect x="120" y="56" width="62.1" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="188.09463722397476" y="72" fill="#93c5fd" font-size="11" font-family="system-ui">518 cards</text>
+        <rect x="120" y="78" width="208.1" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="334.10143883825265" y="94" fill="#86efac" font-size="11" font-family="system-ui">C$5,861 (14%)</text>
+        <text x="0" y="130" fill="#94a3b8" font-size="12" font-family="system-ui">C$25 – C$50</text>
+        <rect x="120" y="112" width="21.6" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="147.57728706624607" y="128" fill="#93c5fd" font-size="11" font-family="system-ui">180 cards</text>
+        <rect x="120" y="134" width="231.0" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="357.03726975976804" y="150" fill="#86efac" font-size="11" font-family="system-ui">C$6,507 (16%)</text>
+        <text x="0" y="186" fill="#94a3b8" font-size="12" font-family="system-ui">C$50 – C$100</text>
+        <rect x="120" y="168" width="13.5" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="139.54574132492112" y="184" fill="#93c5fd" font-size="11" font-family="system-ui">113 cards</text>
+        <rect x="120" y="190" width="279.1" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="405.0738670688046" y="206" fill="#86efac" font-size="11" font-family="system-ui">C$7,860 (19%)</text>
+        <text x="0" y="242" fill="#94a3b8" font-size="12" font-family="system-ui">C$100 – C$250</text>
+        <rect x="120" y="224" width="8.5" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="134.51104100946372" y="240" fill="#93c5fd" font-size="11" font-family="system-ui">71 cards</text>
+        <rect x="120" y="246" width="380.0" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="506.0" y="262" fill="#86efac" font-size="11" font-family="system-ui">C$10,702 (26%)</text>
+        <text x="0" y="298" fill="#94a3b8" font-size="12" font-family="system-ui">C$250+</text>
+        <rect x="120" y="280" width="2.2" height="20" rx="3" fill="#3b82f6" opacity="0.85"/>
+        <text x="128.1577287066246" y="296" fill="#93c5fd" font-size="11" font-family="system-ui">18 cards</text>
+        <rect x="120" y="302" width="269.5" height="20" rx="3" fill="#4ade80" opacity="0.85"/>
+        <text x="395.49117464828504" y="318" fill="#86efac" font-size="11" font-family="system-ui">C$7,590 (18%)</text></svg></div>
+        <table>
+            <thead><tr><th>Tier</th><th>Cards</th><th>% Cards</th><th>Value</th><th>% Value</th></tr></thead>
+            <tbody><tr><td>Under C$5</td><td>3,170</td><td>77.9%</td><td>C$3,167</td><td>7.6%</td></tr><tr><td>C$5 – C$25</td><td>518</td><td>12.7%</td><td>C$5,861</td><td>14.1%</td></tr><tr><td>C$25 – C$50</td><td>180</td><td>4.4%</td><td>C$6,507</td><td>15.6%</td></tr><tr><td>C$50 – C$100</td><td>113</td><td>2.8%</td><td>C$7,860</td><td>18.9%</td></tr><tr><td>C$100 – C$250</td><td>71</td><td>1.7%</td><td>C$10,702</td><td>25.7%</td></tr><tr><td>C$250+</td><td>18</td><td>0.4%</td><td>C$7,590</td><td>18.2%</td></tr></tbody>
+        </table>
+    </div>
+
+    <!-- Value by Era + Liquidity — side by side -->
+    <div class="section">
+        <div class="two-col">
+            <div>
+                <h2 style="border:none; padding:0; margin-bottom:12px">Value by Era</h2>
+                <div class="chart-area"><svg id="eraDonut" viewBox="0 0 480 222" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px"><circle class="era-arc" data-era="Base" cx="100" cy="100" r="80" fill="none" stroke="#f43f5e" stroke-width="32" stroke-dasharray="45.7 456.9" stroke-dashoffset="-0.0" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="Gym" cx="100" cy="100" r="80" fill="none" stroke="#fb923c" stroke-width="32" stroke-dasharray="7.9 494.7" stroke-dashoffset="-45.7" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="Neo" cx="100" cy="100" r="80" fill="none" stroke="#facc15" stroke-width="32" stroke-dasharray="12.7 490.0" stroke-dashoffset="-53.6" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="e-Card" cx="100" cy="100" r="80" fill="none" stroke="#4ade80" stroke-width="32" stroke-dasharray="24.8 477.8" stroke-dashoffset="-66.3" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="EX" cx="100" cy="100" r="80" fill="none" stroke="#2dd4bf" stroke-width="32" stroke-dasharray="216.8 285.8" stroke-dashoffset="-91.2" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="DP" cx="100" cy="100" r="80" fill="none" stroke="#38bdf8" stroke-width="32" stroke-dasharray="16.3 486.4" stroke-dashoffset="-308.0" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="Platinum" cx="100" cy="100" r="80" fill="none" stroke="#818cf8" stroke-width="32" stroke-dasharray="30.0 472.6" stroke-dashoffset="-324.3" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="HGSS" cx="100" cy="100" r="80" fill="none" stroke="#a78bfa" stroke-width="32" stroke-dasharray="5.6 497.1" stroke-dashoffset="-354.3" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="XY" cx="100" cy="100" r="80" fill="none" stroke="#f472b6" stroke-width="32" stroke-dasharray="20.6 482.1" stroke-dashoffset="-359.9" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="SM" cx="100" cy="100" r="80" fill="none" stroke="#94a3b8" stroke-width="32" stroke-dasharray="115.3 387.4" stroke-dashoffset="-380.5" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="era-arc" data-era="SWSH" cx="100" cy="100" r="80" fill="none" stroke="#64748b" stroke-width="32" stroke-dasharray="5.9 496.8" stroke-dashoffset="-495.8" transform="rotate(-90 100 100)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><text class="era-center-name" x="100" y="90" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="700" font-family="system-ui" opacity="0"></text>
+    <text class="era-center-val" x="100" y="108" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="600" font-family="system-ui" opacity="0"></text>
+    <text class="era-center-detail" x="100" y="124" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui" opacity="0"></text><text class="era-label" data-era="Base" x="220" y="14" fill="#f43f5e" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; Base: C$3,793 (9%)</text><text class="era-label" data-era="Gym" x="220" y="32" fill="#fb923c" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; Gym: C$656.27 (2%)</text><text class="era-label" data-era="Neo" x="220" y="50" fill="#facc15" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; Neo: C$1,052 (3%)</text><text class="era-label" data-era="e-Card" x="220" y="68" fill="#4ade80" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; e-Card: C$2,060 (5%)</text><text class="era-label" data-era="EX" x="220" y="86" fill="#2dd4bf" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; EX: C$17,982 (43%)</text><text class="era-label" data-era="DP" x="220" y="104" fill="#38bdf8" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; DP: C$1,351 (3%)</text><text class="era-label" data-era="Platinum" x="220" y="122" fill="#818cf8" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; Platinum: C$2,489 (6%)</text><text class="era-label" data-era="HGSS" x="220" y="140" fill="#a78bfa" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; HGSS: C$464.16 (1%)</text><text class="era-label" data-era="XY" x="220" y="158" fill="#f472b6" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; XY: C$1,708 (4%)</text><text class="era-label" data-era="SM" x="220" y="176" fill="#94a3b8" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; SM: C$9,562 (23%)</text><text class="era-label" data-era="SWSH" x="220" y="194" fill="#64748b" font-size="11.5" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s,font-size 0.15s">&#9632; SWSH: C$489.47 (1%)</text></svg></div>
+            </div>
+            <div>
+                <h2 style="border:none; padding:0; margin-bottom:12px">Liquidity</h2>
+                <div class="chart-area"><svg id="liqDonut" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px">
+        <circle class="liq-arc" data-tier="C$138+" cx="90" cy="90" r="70" fill="none" stroke="#f43f5e" stroke-width="28" stroke-dasharray="145.2 294.6" stroke-dashoffset="-0.0" transform="rotate(-90 90 90)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="liq-arc" data-tier="C$35–138" cx="90" cy="90" r="70" fill="none" stroke="#8b5cf6" stroke-width="28" stroke-dasharray="172.7 267.1" stroke-dashoffset="-145.2" transform="rotate(-90 90 90)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="liq-arc" data-tier="C$7–35" cx="90" cy="90" r="70" fill="none" stroke="#3b82f6" stroke-width="28" stroke-dasharray="80.7 359.1" stroke-dashoffset="-317.9" transform="rotate(-90 90 90)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><circle class="liq-arc" data-tier="Under C$7" cx="90" cy="90" r="70" fill="none" stroke="#334155" stroke-width="28" stroke-dasharray="41.1 398.7" stroke-dashoffset="-398.7" transform="rotate(-90 90 90)" style="cursor:pointer;transition:stroke-width 0.2s,opacity 0.2s"/><text class="liq-center-name" x="90" y="82" text-anchor="middle" fill="#f8fafc" font-size="13" font-weight="700" font-family="system-ui" opacity="0"></text>
+    <text class="liq-center-val" x="90" y="98" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="600" font-family="system-ui" opacity="0"></text>
+    <text class="liq-center-detail" x="90" y="112" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="system-ui" opacity="0"></text><text class="liq-label" data-tier="C$138+" x="200" y="40" fill="#f43f5e" font-size="12" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s">&#9632; C$138+ (33%)</text><text class="liq-label" data-tier="C$35–138" x="200" y="65" fill="#8b5cf6" font-size="12" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s">&#9632; C$35–138 (39%)</text><text class="liq-label" data-tier="C$7–35" x="200" y="90" fill="#3b82f6" font-size="12" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s">&#9632; C$7–35 (18%)</text><text class="liq-label" data-tier="Under C$7" x="200" y="115" fill="#334155" font-size="12" font-family="system-ui" style="cursor:pointer;transition:opacity 0.2s">&#9632; Under C$7 (9%)</text>
+    </svg></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collection Composition -->
+    <div class="section" id="composition">
+        <h2>Collection Composition</h2>
+        <div class="two-col">
+            <div>
+                <h3 style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px">By Rarity</h3>
+                <table class="col-table">
+                    <thead><tr><th>Rarity</th><th>Count</th><th>%</th></tr></thead>
+                    <tbody><tr><td>Common</td><td>1,755</td><td>43.1%</td></tr><tr><td>Uncommon</td><td>1,228</td><td>30.2%</td></tr><tr><td>Rare</td><td>434</td><td>10.7%</td></tr><tr><td>Holo Rare</td><td>295</td><td>7.2%</td></tr><tr><td>Ultra Rare</td><td>176</td><td>4.3%</td></tr><tr><td>Promo</td><td>85</td><td>2.1%</td></tr><tr><td>Shiny Holo Rare</td><td>41</td><td>1.0%</td></tr><tr><td>Secret Rare</td><td>34</td><td>0.8%</td></tr><tr><td>Prism Rare</td><td>12</td><td>0.3%</td></tr><tr><td>Rare BREAK</td><td>5</td><td>0.1%</td></tr></tbody>
+                </table>
+            </div>
+            <div>
+                <h3 style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px">By Era</h3>
+                <table class="col-table">
+                    <thead><tr><th>Era</th><th>Cards</th><th>Value</th></tr></thead>
+                    <tbody><tr><td>Base</td><td>286</td><td>C$3,793</td></tr><tr><td>Gym</td><td>85</td><td>C$656.27</td></tr><tr><td>Neo</td><td>186</td><td>C$1,052</td></tr><tr><td>e-Card</td><td>130</td><td>C$2,060</td></tr><tr><td>EX</td><td>861</td><td>C$17,982</td></tr><tr><td>DP</td><td>253</td><td>C$1,351</td></tr><tr><td>Platinum</td><td>308</td><td>C$2,489</td></tr><tr><td>HGSS</td><td>109</td><td>C$464.16</td></tr><tr><td>BW</td><td>57</td><td>C$79.96</td></tr><tr><td>XY</td><td>313</td><td>C$1,708</td></tr><tr><td>SM</td><td>1,149</td><td>C$9,562</td></tr><tr><td>SWSH</td><td>333</td><td>C$489.47</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <h3 style="font-size:0.85rem; color:#94a3b8; margin: 20px 0 8px">Top Sets by Value</h3>
+        <table class="col-table" style="max-width:500px">
+            <thead><tr><th>Set</th><th>Cards</th><th>Value</th></tr></thead>
+            <tbody><tr><td>EX Delta Species</td><td>73</td><td>C$3,467</td></tr><tr><td>EX Unseen Forces</td><td>95</td><td>C$3,024</td></tr><tr><td>Cosmic Eclipse</td><td>206</td><td>C$2,956</td></tr><tr><td>EX Crystal Guardians</td><td>92</td><td>C$1,972</td></tr><tr><td>Sun & Moon Promo</td><td>30</td><td>C$1,774</td></tr><tr><td>EX Dragon Frontiers</td><td>73</td><td>C$1,683</td></tr><tr><td>Platinum</td><td>202</td><td>C$1,581</td></tr><tr><td>EX Holon Phantoms</td><td>77</td><td>C$1,511</td></tr><tr><td>Wizards Black Star Promo</td><td>28</td><td>C$1,342</td></tr><tr><td>Hidden Fates</td><td>135</td><td>C$1,220</td></tr></tbody>
+        </table>
+    </div>
+
+
+    <!-- Consignment Recovery -->
+    <div class="section" id="consignment">
+        <h2>Consignment Recovery Estimate</h2>
+        <p style="color:#94a3b8; font-size:0.82rem; margin-bottom:16px">
+            Projected recovery through consignment, based on expected sell-through rates at different price tiers.
+        </p>
+        <table style="max-width:820px">
+            <thead><tr><th>Tier</th><th>Cards</th><th>Market Value</th><th>Recovery Rate</th><th>Expected Return</th><th>Consigner's Take</th></tr></thead>
+            <tbody><tr><td>Under C$50</td><td>3,868</td><td>C$15,535</td><td>75%</td><td style="color:#4ade80;font-weight:600">C$11,651</td><td style="color:#f87171">C$3,884</td></tr><tr><td>C$50 – C$99</td><td>113</td><td>C$7,860</td><td>80%</td><td style="color:#4ade80;font-weight:600">C$6,288</td><td style="color:#f87171">C$1,572</td></tr><tr><td>C$100 – C$299</td><td>75</td><td>C$11,775</td><td>83%</td><td style="color:#4ade80;font-weight:600">C$9,773</td><td style="color:#f87171">C$2,002</td></tr><tr><td>C$300 – C$999</td><td>13</td><td>C$5,272</td><td>84%</td><td style="color:#4ade80;font-weight:600">C$4,428</td><td style="color:#f87171">C$843.46</td></tr><tr><td>C$1,000+</td><td>1</td><td>C$1,245</td><td>85%</td><td style="color:#4ade80;font-weight:600">C$1,059</td><td style="color:#f87171">C$186.82</td></tr>
+            <tr style="border-top:2px solid #334155;font-weight:700">
+                <td>Total</td><td>4,070</td><td>C$41,686</td>
+                <td>80%</td>
+                <td style="color:#4ade80;font-size:1.1rem">C$33,199</td>
+                <td style="color:#f87171;font-size:1.1rem">C$8,488</td>
+            </tr>
+            </tbody>
+        </table>
+        <p style="color:#94a3b8; font-size:0.82rem; margin-top:14px; line-height:1.6">
+            Based on C$41,686 in estimated market value across 4,070 priced cards,
+            the blended recovery rate is <strong>80%</strong>.
+            The seller receives an estimated <strong style="color:#4ade80">C$33,199</strong>,
+            and the consignment partner earns <strong style="color:#f87171">C$8,488</strong>
+            (20% of market value)
+            for handling sales, listing, and fulfillment.
+        </p>
+    </div>
+
+    <p class="footer">
+        Pricing data sourced from TCGPlayer (via tcgcsv.com) and PriceCharting.
+        Market prices reflect recent median sale prices. PSA graded prices reflect recent auction &amp; sale data.
+        All values converted to CAD at 1.38 USD/CAD.
+    </p>
+</div>
+
+<script>
+// Era donut interactivity
+(function() {
+    const data = {"Base": {"val": "C$3,793", "pct": "9%", "cnt": 286}, "Gym": {"val": "C$656.27", "pct": "2%", "cnt": 85}, "Neo": {"val": "C$1,052", "pct": "3%", "cnt": 186}, "e-Card": {"val": "C$2,060", "pct": "5%", "cnt": 130}, "EX": {"val": "C$17,982", "pct": "43%", "cnt": 861}, "DP": {"val": "C$1,351", "pct": "3%", "cnt": 253}, "Platinum": {"val": "C$2,489", "pct": "6%", "cnt": 308}, "HGSS": {"val": "C$464.16", "pct": "1%", "cnt": 109}, "XY": {"val": "C$1,708", "pct": "4%", "cnt": 313}, "SM": {"val": "C$9,562", "pct": "23%", "cnt": 1149}, "SWSH": {"val": "C$489.47", "pct": "1%", "cnt": 333}};
+    const svg = document.getElementById('eraDonut');
+    if (!svg) return;
+    const arcs = svg.querySelectorAll('.era-arc');
+    const labels = svg.querySelectorAll('.era-label');
+    const centerName = svg.querySelector('.era-center-name');
+    const centerVal = svg.querySelector('.era-center-val');
+    const centerDetail = svg.querySelector('.era-center-detail');
+
+    function highlight(era) {
+        arcs.forEach(a => {
+            if (a.dataset.era === era) {
+                a.setAttribute('stroke-width', '40');
+                a.style.opacity = '1';
+            } else {
+                a.style.opacity = '0.3';
+            }
+        });
+        labels.forEach(l => {
+            if (l.dataset.era === era) {
+                l.style.opacity = '1';
+                l.setAttribute('font-weight', '700');
+            } else {
+                l.style.opacity = '0.35';
+            }
+        });
+        const d = data[era];
+        if (d && centerName) {
+            centerName.textContent = era;
+            centerVal.textContent = d.val;
+            centerDetail.textContent = d.cnt + ' cards · ' + d.pct;
+            centerName.style.opacity = '1';
+            centerVal.style.opacity = '1';
+            centerDetail.style.opacity = '1';
+        }
+    }
+
+    function reset() {
+        arcs.forEach(a => {
+            a.setAttribute('stroke-width', '32');
+            a.style.opacity = '1';
+        });
+        labels.forEach(l => {
+            l.style.opacity = '1';
+            l.removeAttribute('font-weight');
+        });
+        if (centerName) {
+            centerName.style.opacity = '0';
+            centerVal.style.opacity = '0';
+            centerDetail.style.opacity = '0';
+        }
+    }
+
+    arcs.forEach(a => {
+        a.addEventListener('mouseenter', () => highlight(a.dataset.era));
+        a.addEventListener('mouseleave', reset);
+    });
+    labels.forEach(l => {
+        l.addEventListener('mouseenter', () => highlight(l.dataset.era));
+        l.addEventListener('mouseleave', reset);
+    });
+})();
+
+// Liquidity donut interactivity
+(function() {
+    const data = {"C$138+": {"val": "C$13,763", "pct": "33%", "cnt": 51}, "C$35\u2013138": {"val": "C$16,372", "pct": "39%", "cnt": 246}, "C$7\u201335": {"val": "C$7,652", "pct": "18%", "cnt": 480}, "Under C$7": {"val": "C$3,899", "pct": "9%", "cnt": 3293}};
+    const svg = document.getElementById('liqDonut');
+    if (!svg) return;
+    const arcs = svg.querySelectorAll('.liq-arc');
+    const labels = svg.querySelectorAll('.liq-label');
+    const centerName = svg.querySelector('.liq-center-name');
+    const centerVal = svg.querySelector('.liq-center-val');
+    const centerDetail = svg.querySelector('.liq-center-detail');
+
+    function highlight(tier) {
+        arcs.forEach(a => {
+            if (a.dataset.tier === tier) {
+                a.setAttribute('stroke-width', '36');
+                a.style.opacity = '1';
+            } else {
+                a.style.opacity = '0.3';
+            }
+        });
+        labels.forEach(l => {
+            if (l.dataset.tier === tier) {
+                l.style.opacity = '1';
+                l.setAttribute('font-weight', '700');
+            } else {
+                l.style.opacity = '0.35';
+            }
+        });
+        const d = data[tier];
+        if (d && centerName) {
+            centerName.textContent = tier;
+            centerVal.textContent = d.val;
+            centerDetail.textContent = d.cnt + ' cards';
+            centerName.style.opacity = '1';
+            centerVal.style.opacity = '1';
+            centerDetail.style.opacity = '1';
+        }
+    }
+
+    function reset() {
+        arcs.forEach(a => {
+            a.setAttribute('stroke-width', '28');
+            a.style.opacity = '1';
+        });
+        labels.forEach(l => {
+            l.style.opacity = '1';
+            l.removeAttribute('font-weight');
+        });
+        if (centerName) {
+            centerName.style.opacity = '0';
+            centerVal.style.opacity = '0';
+            centerDetail.style.opacity = '0';
+        }
+    }
+
+    arcs.forEach(a => {
+        a.addEventListener('mouseenter', () => highlight(a.dataset.tier));
+        a.addEventListener('mouseleave', reset);
+    });
+    labels.forEach(l => {
+        l.addEventListener('mouseenter', () => highlight(l.dataset.tier));
+        l.addEventListener('mouseleave', reset);
+    });
+})();
+</script>
+</body>
+</html>
