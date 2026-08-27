@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graded Cards (TAG) &mdash; Pok&eacute;mon TCG Collection</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f172a; color: #e2e8f0; line-height: 1.5; }
+.container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+h1 { font-size: 1.8rem; color: #f8fafc; margin-bottom: 4px; }
+.subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 28px; }
+h2 { font-size: 1.1rem; color: #f8fafc; margin: 32px 0 14px; padding-bottom: 8px;
+  border-bottom: 1px solid #334155; }
+p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 12px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 12px; margin: 20px 0; }
+.stat { background: #1e293b; border-radius: 10px; padding: 14px 16px; }
+.stat .v { font-size: 1.3rem; font-weight: 700; color: #f8fafc; }
+.stat .l { font-size: 0.72rem; color: #64748b; text-transform: uppercase; letter-spacing: .04em; }
+.stat.green .v { color: #4ade80; } .stat.purple .v { color: #a78bfa; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th { text-align: left; color: #64748b; font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: .05em; padding: 8px 10px; border-bottom: 1px solid #334155; }
+td { padding: 9px 10px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+.sub { color: #64748b; font-size: 0.72rem; }
+.grade { background: #312e81; color: #c7d2fe; border-radius: 6px; padding: 2px 8px;
+  font-weight: 700; font-size: 0.8rem; }
+.rh { background: #713f12; color: #fde68a; border-radius: 4px; padding: 1px 5px;
+  font-size: 0.65rem; vertical-align: middle; }
+.tagv { color: #a78bfa; font-weight: 700; }
+.psa { color: #f59e0b; }
+.meth { color: #64748b; font-size: 0.72rem; } .meth.direct { color: #4ade80; }
+.inc { color: #4ade80; font-size: 0.75rem; }
+.lrow { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.llabel { width: 190px; font-size: 0.8rem; color: #94a3b8; text-align: right; }
+.lbar { flex: 1; background: #1e293b; border-radius: 6px; height: 22px; overflow: hidden; }
+.lfill { height: 100%; border-radius: 6px; }
+.lval { width: 90px; font-size: 0.85rem; font-weight: 700; color: #f8fafc; }
+.cardrow { display: flex; gap: 16px; background: #1e293b; border-radius: 12px;
+  padding: 14px; margin-bottom: 12px; }
+.cardrow img { width: 92px; height: auto; align-self: flex-start; border-radius: 6px; flex-shrink: 0; }
+.cardbody { flex: 1; min-width: 0; }
+.cardtop { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.cardname { font-weight: 700; color: #f8fafc; font-size: 0.95rem; }
+.vals { display: flex; gap: 18px; flex-wrap: wrap; margin: 10px 0 8px; }
+.vl { font-size: 0.62rem; color: #64748b; text-transform: uppercase; letter-spacing: .05em; }
+.vv { font-size: 0.95rem; font-weight: 700; }
+.vv.ask { color: #4ade80; } .vv.tagv { color: #a78bfa; }
+.vv.psa { color: #f59e0b; } .vv.raw { color: #64748b; }
+.explain { font-size: 0.8rem; color: #94a3b8; line-height: 1.55; border-left: 3px solid #334155;
+  padding-left: 10px; }
+.explain.direct { border-left-color: #4ade80; }
+@media (max-width: 560px) { .cardrow { flex-direction: column; } .cardrow img { width: 120px; } }
+.note { font-size: 0.78rem; color: #64748b; margin-top: 18px; line-height: 1.6; }
+a { color: #60a5fa; }
+@media (max-width: 640px) { .llabel { width: 110px; font-size: 0.7rem; } }
+</style></head><body><div class="container">
+<h1>Graded Cards &mdash; TAG</h1>
+<div class="subtitle">Included in the collection sale at raw-card pricing &middot; August 26, 2026</div>
+
+<p>The sale includes <strong style="color:#f8fafc">19 professionally graded (TAG) cards</strong>.
+They are priced at their <em>raw card</em> market value &mdash; no grading premium is charged.
+Valued at actual TAG-market comps, the set is worth about
+<strong style="color:#a78bfa">C$13,625</strong> against
+<strong style="color:#4ade80">C$9,861</strong> asked &mdash; a
+<strong style="color:#f8fafc">28% discount</strong> to slab value.</p>
+
+<div class="stats">
+  <div class="stat green"><div class="v">C$9,861</div><div class="l">asking (raw pricing)</div></div>
+  <div class="stat purple"><div class="v">C$13,625</div><div class="l">TAG-market value</div></div>
+  <div class="stat"><div class="v">28%</div><div class="l">discount to slab value</div></div>
+  <div class="stat"><div class="v">C$18,951</div><div class="l">PSA-at-grade ceiling</div></div>
+</div>
+
+<h2>Where the ask sits</h2>
+<div class="lrow"><div class="llabel">eBay raw comps (floor)</div>
+        <div class="lbar"><div class="lfill" style="width:31%;background:#64748b"></div></div>
+        <div class="lval">C$5,791</div></div><div class="lrow"><div class="llabel">Asking price</div>
+        <div class="lbar"><div class="lfill" style="width:52%;background:#4ade80"></div></div>
+        <div class="lval">C$9,861</div></div><div class="lrow"><div class="llabel">TAG-market value</div>
+        <div class="lbar"><div class="lfill" style="width:72%;background:#8b5cf6"></div></div>
+        <div class="lval">C$13,625</div></div><div class="lrow"><div class="llabel">PSA at grade (ceiling)</div>
+        <div class="lbar"><div class="lfill" style="width:100%;background:#f59e0b"></div></div>
+        <div class="lval">C$18,951</div></div>
+
+<h2>The cards &mdash; and how each comp was determined</h2>
+<div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex14-4/medium" loading="lazy" alt="Charizard">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Charizard <span class="rh">RH</span><div class="sub">EX Crystal Guardians</div></div>
+              <span class="grade">TAG 9</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$1,656</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$3,680</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$5,750</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$586</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 9 copies (reverse-holo page) run US$4,167; applying the measured TAG discount (× 0.64) gives US$2,667.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex10-105/medium" loading="lazy" alt="Lugia ex">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Lugia ex<div class="sub">EX Unseen Forces</div></div>
+              <span class="grade">TAG 6.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$1,206</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$1,828</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$1,809</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$1,206</div></div>
+            </div>
+            <div class="explain direct">TAG sales of this card bracket the grade: TAG 6 at US$1,200 and TAG 8 at US$1,700. Linear interpolation at 6.5 gives US$1,325. The PSA-based estimate (0.64 × PSA 6.5 US$1,311) lands within 1% — two routes, same answer.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex13-8/medium" loading="lazy" alt="Gyarados">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Gyarados <span class="rh">RH</span><div class="sub">EX Holon Phantoms</div></div>
+              <span class="grade">TAG 8</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$440</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$1,204</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$1,732</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$322</div></div>
+            </div>
+            <div class="explain direct">Scrydex's TAG chart records a sale of this exact card at TAG 8 for US$872 — used directly, no conversion needed.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-3/medium" loading="lazy" alt="Dragonite">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Dragonite<div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 9</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$477</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$1,051</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$1,643</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$244</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 9 copies run US$1,190; applying the measured TAG discount (× 0.64) gives US$762.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-12/medium" loading="lazy" alt="Mewtwo">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Mewtwo<div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 8.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$1,031</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$980</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$945</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$233</div></div>
+            </div>
+            <div class="explain direct">TAG sales of this card bracket the grade: TAG 7 at US$228 and TAG 9 at US$871. Linear interpolation at 8.5 gives US$710. Note this slightly exceeds the PSA 8.5 comp (US$685) — mid-grade PSA sales of this card are soft.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex10-29/medium" loading="lazy" alt="Lugia">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Lugia <span class="rh">RH</span><div class="sub">EX Unseen Forces</div></div>
+              <span class="grade">TAG 8.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$552</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$883</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$1,029</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$292</div></div>
+            </div>
+            <div class="explain direct">Scrydex's TAG chart records a sale of this exact card at TAG 8.5 for US$640 — used directly, no conversion needed.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ecard2-104/medium" loading="lazy" alt="Psyduck">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Psyduck<div class="sub">Aquapolis</div></div>
+              <span class="grade">TAG 9</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$268</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$612</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$957</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$234</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 9 copies run US$693; applying the measured TAG discount (× 0.64) gives US$444.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-8/medium" loading="lazy" alt="Latias">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Latias <span class="rh">RH</span><div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 9</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$247</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$540</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$843</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$179</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 9 copies (reverse-holo page) run US$611; applying the measured TAG discount (× 0.64) gives US$391.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-40/medium" loading="lazy" alt="Ditto">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Ditto <span class="rh">RH</span><div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 9</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$445</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$530</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$828</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$252</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 9 copies (reverse-holo page) run US$600; applying the measured TAG discount (× 0.64) gives US$384. Comps come from the dedicated Ditto (Squirtle) reverse-holo page.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex2-24/medium" loading="lazy" alt="Umbreon">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Umbreon <span class="rh">RH</span><div class="sub">EX Sandstorm</div></div>
+              <span class="grade">TAG 8.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$276</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$445</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$695</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$298</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 8.5 copies (reverse-holo page) run US$504; applying the measured TAG discount (× 0.64) gives US$323.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-17/medium" loading="lazy" alt="Umbreon">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Umbreon <span class="rh">RH</span><div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 6.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$426</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$376</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$588</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$450</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 6.5 copies (reverse-holo page) run US$426; applying the measured TAG discount (× 0.64) gives US$273.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex15-96/medium" loading="lazy" alt="Latios ex">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Latios ex<div class="sub">EX Dragon Frontiers</div></div>
+              <span class="grade">TAG 8</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$455</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$307</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$480</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$213</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 8 copies run US$348; applying the measured TAG discount (× 0.64) gives US$223.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex15-98/medium" loading="lazy" alt="Salamence ex">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Salamence ex<div class="sub">EX Dragon Frontiers</div></div>
+              <span class="grade">TAG 8</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$706</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$302</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$473</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$166</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 8 copies run US$342; applying the measured TAG discount (× 0.64) gives US$219.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-4/medium" loading="lazy" alt="Espeon">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Espeon<div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 6.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$347</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$241</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$172</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$169</div></div>
+            </div>
+            <div class="explain direct">0.64 × the PSA 6.5 comp (US$125) would give US$80, but a TAG 5 of this card sold for US$175 — a TAG 6.5 cannot be worth less than a TAG 5, so that sale is the floor.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/sm11-226/medium" loading="lazy" alt="Mega Sableye & Tyranitar GX">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Mega Sableye & Tyranitar GX<div class="sub">Unified Minds</div></div>
+              <span class="grade">TAG 7.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$531</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$240</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$376</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$476</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 7.5 copies run US$272; applying the measured TAG discount (× 0.64) gives US$174.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex3-98/medium" loading="lazy" alt="Charmander">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Charmander <span class="rh">STAMPED</span><div class="sub">EX Dragon</div></div>
+              <span class="grade">TAG 7.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$448</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$199</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$311</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$245</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 7.5 copies run US$226; applying the measured TAG discount (× 0.64) gives US$144. The League/State stamp has no separately tracked comps; unstamped comps are the proxy — stamped copies are scarcer, so this likely understates it.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex3-99/medium" loading="lazy" alt="Charmeleon">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Charmeleon <span class="rh">STAMPED</span><div class="sub">EX Dragon</div></div>
+              <span class="grade">TAG 6</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$163</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$122</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$191</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$102</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 6 copies run US$139; applying the measured TAG discount (× 0.64) gives US$89. The League/State stamp has no separately tracked comps; unstamped comps are the proxy — stamped copies are scarcer, so this likely understates it.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/ex11-18/medium" loading="lazy" alt="Vaporeon">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Vaporeon<div class="sub">EX Delta Species</div></div>
+              <span class="grade">TAG 7.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask">C$185</div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$83</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$129</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$124</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 7.5 copies run US$94; applying the measured TAG discount (× 0.64) gives US$60.</div>
+          </div>
+        </div><div class="cardrow">
+          <img src="https://images.scrydex.com/pokemon/pop2-17/medium" loading="lazy" alt="Celebi ex">
+          <div class="cardbody">
+            <div class="cardtop">
+              <div class="cardname">Celebi ex<div class="sub">POP Series 2</div></div>
+              <span class="grade">TAG 5.5</span>
+            </div>
+            <div class="vals">
+              <div class="val"><div class="vl">Ask</div><div class="vv ask"><span class="inc">included</span></div></div>
+              <div class="val"><div class="vl">TAG value</div><div class="vv tagv">C$55</div></div>
+              <div class="val"><div class="vl">PSA @ grade</div><div class="vv psa">C$86</div></div>
+              <div class="val"><div class="vl">Raw comps</div><div class="vv raw">C$71</div></div>
+            </div>
+            <div class="explain">No TAG sale recorded at or near this grade. PriceCharting completed sales for PSA 5.5 copies run US$62; applying the measured TAG discount (× 0.64) gives US$40. This card is not in the main sale sheets — it rides along unpriced.</div>
+          </div>
+        </div>
+
+<h2>Methodology &mdash; why TAG values, not PSA</h2>
+<p>TAG slabs trade below same-grade PSA. Rather than assume a discount, it was measured:
+Scrydex charts individual TAG sales per grade. Across the seven cases where one of
+<em>these exact cards</em> has both a TAG sale and a PSA price at the identical grade,
+TAG cleared a <strong style="color:#f8fafc">median 64%</strong> of PSA:</p>
+<table style="max-width:560px"><thead><tr><th>Card</th><th class="n">Grade</th>
+<th class="n">TAG sale</th><th class="n">PSA price</th><th class="n">Ratio</th></tr></thead>
+<tbody><tr><td>Charmander (League)</td><td class='n'>8.5</td><td class='n'>$353</td><td class='n'>$380</td><td class='n'>0.93</td></tr><tr><td>Mega Sableye & Tyranitar GX</td><td class='n'>9</td><td class='n'>$345</td><td class='n'>$407</td><td class='n'>0.85</td></tr><tr><td>Gyarados RH</td><td class='n'>8</td><td class='n'>$872</td><td class='n'>$1,268</td><td class='n'>0.69</td></tr><tr><td>Mewtwo</td><td class='n'>9</td><td class='n'>$871</td><td class='n'>$1,370</td><td class='n'>0.64</td></tr><tr><td>Lugia RH</td><td class='n'>8.5</td><td class='n'>$640</td><td class='n'>$1,076</td><td class='n'>0.59</td></tr><tr><td>Lugia ex</td><td class='n'>8</td><td class='n'>$1,700</td><td class='n'>$2,926</td><td class='n'>0.58</td></tr><tr><td>Mewtwo</td><td class='n'>7</td><td class='n'>$228</td><td class='n'>$484</td><td class='n'>0.47</td></tr></tbody></table>
+<p class="note">
+Each card uses a direct TAG sale at its grade where one exists (green-edged explanations below),
+linear interpolation where its grade sits between two TAG sales of the same card,
+and 0.64 &times; same-grade PSA otherwise. PSA ladders are PriceCharting completed-sale
+data (reverse-holo cards use their dedicated reverse-holo pages). TAG-10-vs-PSA-10
+comparisons were excluded from the ratio &mdash; different scarcity populations.
+Several TAG points are single sales; treat per-card figures as directional.
+League/State-stamped cards are proxied by their unstamped comps.
+All values converted from USD at 1.38 USD/CAD.
+Sources: pricecharting.com, scrydex.com, tcgplayer.com &mdash; retrieved August 26, 2026.</p>
+</div></body></html>
