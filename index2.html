@@ -212,6 +212,8 @@ tr.grade-consider:hover { background: #fef3c7; }
 .card-link.pc { background: #dcfce7; color: #166534; }
 .card-link.ebay { background: #fef3c7; color: #92400e; }
 .card-link.scrydex { background: #ede9fe; color: #5b21b6; }
+.collectr-sub { margin-top: 4px; }
+.collectr-sub a { color: #6366f1; text-decoration: none; font-weight: 600; }
 .card-link.cm { background: #fecaca; color: #991b1b; }
 .card-link.tcgrep { background: #ffe4e6; color: #9f1239; }
 .num-cell { text-align: center; }
@@ -329,11 +331,12 @@ tr.grade-consider:hover { background: #fef3c7; }
     <a href="#inventory">Inventory</a>
     <a href="binders.html">Binders &rarr;</a>
     <a href="pokemon_collection_pitch.html">Pitch &rarr;</a>
+    <a href="onepager.html">Offer &rarr;</a>
     <button id="currToggle" class="curr-toggle" title="Toggle USD / CAD">Switch to CAD</button>
 </nav>
 <div class="container">
     <h1>Pok&eacute;mon TCG Collection &mdash; Pricing Report</h1>
-    <p class="subtitle">Generated August 26, 2026 at 10:00 PM</p>
+    <p class="subtitle">Generated August 26, 2026 at 11:21 PM</p>
 
     <div class="summary" id="summary">
         <div class="stat-card">
@@ -350,11 +353,12 @@ tr.grade-consider:hover { background: #fef3c7; }
             <div class="label">Est. Collection Value</div>
             <div class="value money" id="valueDisplay">$2,047.94</div>
             <div class="sub" id="valueSub">417 priced cards &middot; TCGPlayer market</div>
+            
             <div class="liquid-controls">
                 <label class="liquid-label">Liquidity cutoff</label>
                 <div class="liquid-slider-row">
                     <input type="range" id="liquidSlider" min="0" max="50" step="1" value="0">
-                    <span class="liquid-input-wrap">$<input type="number" id="liquidInput" min="0" max="9999" step="1" value="0"></span>
+                    <span class="liquid-input-wrap"><span id="liquidSym">$</span><input type="number" id="liquidInput" min="0" max="9999" step="1" value="0"></span>
                 </div>
             </div>
             <div class="liquid-breakdown" id="liquidBreakdown" style="display:none">
@@ -11512,10 +11516,13 @@ document.querySelectorAll('.block-btn').forEach(btn => {
     window._liquidUpdate = function() {
         const hideJP = window._jpHidden || false;
         const hideEN = window._enHidden || false;
-        const cutoff = Number(input.value) || 0;
+        const cutoff = Number(input.value) || 0;  // in the ACTIVE currency
         const cad = window._isCad || false;
         const cr = cad ? 1.38 : 1;
         const sym = cad ? 'C$' : '$';
+        const cutoffUsd = cutoff / cr;  // prices[] are USD
+        const symEl = document.getElementById('liquidSym');
+        if (symEl) symEl.textContent = sym;
         const fmtC = n => sym + (n * cr).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         let total = 0, pricedCount = 0;
         for (let i = 0; i < prices.length; i++) {
@@ -11533,15 +11540,15 @@ document.querySelectorAll('.block-btn').forEach(btn => {
         for (let i = 0; i < prices.length; i++) {
             if (hideJP && langs[i] === 'JP') continue;
             if (hideEN && langs[i] !== 'JP') continue;
-            if (prices[i] >= cutoff) { liqCount++; liqValue += prices[i]; }
+            if (prices[i] >= cutoffUsd) { liqCount++; liqValue += prices[i]; }
         }
         const bulkCount = pricedCount - liqCount;
         const bulkValue = total - liqValue;
         valEl.textContent = fmtC(liqValue);
-        subEl.textContent = liqCount + ' cards at ' + sym + Math.round(cutoff * cr) + '+';
+        subEl.textContent = liqCount + ' cards at ' + sym + Math.round(cutoff) + '+';
         document.getElementById('liquidLabel').textContent = 'Liquid (' + liqCount + ' cards)';
         document.getElementById('liquidValue').textContent = fmtC(liqValue);
-        document.getElementById('bulkLabel').textContent = 'Bulk <' + sym + Math.round(cutoff * cr) + ' (' + bulkCount + ' cards)';
+        document.getElementById('bulkLabel').textContent = 'Bulk <' + sym + Math.round(cutoff) + ' (' + bulkCount + ' cards)';
         document.getElementById('bulkValue').textContent = fmtC(bulkValue);
         bd.style.display = '';
     };
